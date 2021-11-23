@@ -63,3 +63,28 @@ main {
     height: calc( 100vh - 200px );
     background-color: #7fffd4;
 }
+
+#grid {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+
+    /* variable in js  */
+    width: 10%;
+    height: 10%;
+}
+
+
+.cell.active span {
+    background-color: lightblue;
+}

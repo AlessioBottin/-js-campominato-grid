@@ -4,9 +4,67 @@
 // con difficoltà 3 => tra 1 e 49
 // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
 
-// Quando l' utente clicca play se il valore della option è easy creo numeri casuali da 1 a 100 e lo stile del generatedcell è 10% width
-// medium 1 a 81 e 100% / 8 width
-// hard 1 a 49 e 100% / 7 width
+// Quando l' utente cliccca play parte il gioco
+const playBtn = document.getElementById('play-btn');
+playBtn.addEventListener('click', gameStart);
+
+function gameStart() {
+    // Raccolgo il dato sull' impostazione della difficolta 
+    const gameDifficulty = document.getElementById('difficulty').value;
+    let generatedCellsNumber;
+
+    // Resetto le celle precedenti 
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+
+    
+    // Cambio il numero di celle in base alla difficoltà 
+    switch (gameDifficulty) {
+        case 'easy':
+            generatedCellsNumber = 100;
+            break;
+        case 'medium':
+            generatedCellsNumber = 81;
+            break;
+        case 'hard':
+            generatedCellsNumber = 49;
+            break; 
+        default:
+    }
+
+    // Genero l' array di numeri casuali e diversi 
+    const rndNumbersArray = getRndNumbersArray(generatedCellsNumber);
+
+    // Per ogni numero genero una cella e la appendo al div che la contiene
+    for ( i = 0; i < rndNumbersArray.length; i++ ) {
+        thisNumber = rndNumbersArray[i];
+
+        // Genero cella 
+        const createdCell = createCell(thisNumber);
+
+        // Ne modifico le dimensioni in base alle celle 
+        if (generatedCellsNumber = 100) {
+            createdCell.style.width = "calc( 100% / 10 )";
+            createdCell.style.height = "calc( 100% / 10 )";
+        } else if ( generatedCellsNumber = 81 ) {
+            createdCell.style.width = "calc( 100% / 8 )";
+            createdCell.style.height = "calc( 100% / 8 )";   
+        } else if ( generatedCellsNumber = 49 ) {
+            createdCell.style.width = "calc( 100% / 7 )";
+            createdCell.style.height = "calc( 100% / 7 )";   
+        }
+
+        // Appendo cella 
+        grid.appendChild(createdCell);
+    }
+}
+
+
+
+
+// ---------
+// DOM FUNCTIONS 
+// ---------
 
 
 
@@ -14,9 +72,18 @@
 // FUNCTIONS 
 // ---------
 
-// Genera un div con all' interno uno span il cui numero e uguale a quello dell' array 
-function createCell() {
-    
+// Genera un div con all' interno uno span e un numero
+// number --> numero che voglio dare allo span 
+function createCell(number) {
+    const newCell = document.createElement('div');
+    newCell.classList.add('cell');
+    // newCell.style.width = 
+    newCell.innerHTML = 
+    `
+    <span>${number}</span>
+    `;
+
+    return newCell;
 }
 
 // Genera un array di numeri in posizione casuale e mai doppi da 1 a numbersQuantity inclusi 
