@@ -78,10 +78,6 @@ main {
     justify-content: center;
     align-items: center;
     border: 2px solid black;
-
-    /* variable in js  */
-    width: 10%;
-    height: 10%;
 }
 
 

@@ -40,19 +40,19 @@ function gameStart() {
         thisNumber = rndNumbersArray[i];
 
         // Genero cella 
-        const createdCell = createCell(thisNumber);
+        const createdCell = createCell(thisNumber, generatedCellsNumber);
 
         // Ne modifico le dimensioni in base alle celle 
-        if (generatedCellsNumber = 100) {
-            createdCell.style.width = "calc( 100% / 10 )";
-            createdCell.style.height = "calc( 100% / 10 )";
-        } else if ( generatedCellsNumber = 81 ) {
-            createdCell.style.width = "calc( 100% / 8 )";
-            createdCell.style.height = "calc( 100% / 8 )";   
-        } else if ( generatedCellsNumber = 49 ) {
-            createdCell.style.width = "calc( 100% / 7 )";
-            createdCell.style.height = "calc( 100% / 7 )";   
-        }
+        // if (generatedCellsNumber = 100) {
+        //     createdCell.style.width = "calc( 100% / 10 )";
+        //     createdCell.style.height = "calc( 100% / 10 )";
+        // } else if ( generatedCellsNumber = 81 ) {
+        //     createdCell.style.width = "calc( 100% / 8 )";
+        //     createdCell.style.height = "calc( 100% / 8 )";   
+        // } else if ( generatedCellsNumber = 49 ) {
+        //     createdCell.style.width = "calc( 100% / 7 )";
+        //     createdCell.style.height = "calc( 100% / 7 )";   
+        // }
 
         // Appendo cella 
         grid.appendChild(createdCell);
@@ -74,10 +74,12 @@ function gameStart() {
 
 // Genera un div con all' interno uno span e un numero
 // number --> numero che voglio dare allo span 
-function createCell(number) {
+function createCell(number, dimensionNumber) {
     const newCell = document.createElement('div');
     newCell.classList.add('cell');
-    // newCell.style.width = 
+    let cellDimensionNumber = Math.sqrt(dimensionNumber);
+    newCell.style.width = `calc( 100% / ( ${cellDimensionNumber} ) )`;
+    newCell.style.height = `calc( 100% / ( ${cellDimensionNumber} ) )`;
     newCell.innerHTML = 
     `
     <span>${number}</span>
